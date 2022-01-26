@@ -21,7 +21,7 @@ function Footer() {
         >
           <Box>
             <Typography variant="subtitle1">
-              Made by Cinna
+              Made by Cinna - <a href="https://github.com/Cinnamon18/CinnasT10Tracker">Source</a>
             </Typography>
           </Box>
           <Typography sx={{ pt: { xs: 2, md: 0 } }} variant="subtitle1">
