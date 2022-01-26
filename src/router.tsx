@@ -20,6 +20,7 @@ const Overview = Loader(lazy(() => import('src/content/overview')));
 // Dashboards
 
 const Crypto = Loader(lazy(() => import('src/content/dashboards/Crypto')));
+const Tracker = Loader(lazy(() => import('src/content/dashboards/Tracker')));
 
 // Applications
 
@@ -112,7 +113,7 @@ const routes: PartialRouteObject[] = [
         path: '/',
         element: (
           <Navigate
-            to="/dashboards/crypto"
+            to="/dashboards/tracker"
             replace
           />
         )
@@ -120,6 +121,10 @@ const routes: PartialRouteObject[] = [
       {
         path: 'crypto',
         element: <Crypto />
+      },
+	  {
+        path: 'tracker',
+        element: <Tracker />
       },
       {
         path: 'messenger',

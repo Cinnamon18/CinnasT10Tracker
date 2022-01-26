@@ -24,7 +24,6 @@ const MainWrapper = styled(Box)(
 
 const MainContent = styled(Box)(
   ({ theme }) => `
-        margin-top: ${theme.header.height};
         flex: 1 1 auto;
         overflow: auto;
 `
@@ -35,7 +34,7 @@ const SidebarLayout: FC<SidebarLayoutProps> = () => {
     <>
       <Sidebar />
       <MainWrapper>
-        <Header />
+        {/* <Header /> */}
         <MainContent>
           <Outlet />
         </MainContent>

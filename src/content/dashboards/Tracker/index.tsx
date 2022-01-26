@@ -1,0 +1,105 @@
+import { Helmet } from 'react-helmet-async';
+import PageHeader from './PageHeader';
+import PageTitleWrapper from 'src/components/PageTitleWrapper';
+import { Grid, Container } from '@mui/material';
+import Footer from 'src/components/Footer';
+
+import RecentOrders from './RecentOrders';
+import DataLoader from 'src/utils/dataloader';
+import Region from 'src/models/region';
+import React from 'react';
+import User from 'src/models/user';
+import GbpEvent from "src/models/gbp_event";
+
+interface IDashboardTrackerProps { }
+interface IDashboardTrackerState {
+	users: { [uid: number]: User } | null,
+}
+
+class DashboardTracker extends React.Component<IDashboardTrackerProps, IDashboardTrackerState> {
+	private id: number | undefined;
+	private region: Region;
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			users: null
+		};
+
+		this.id = undefined;
+		this.region = Region.EN;
+
+		this.loadData();
+	}
+
+	private async loadData() {
+		const dataLoader = DataLoader.getInstance();
+		await dataLoader.loadEvents();
+
+		dataLoader.region = this.region;
+		if (this.id) {
+			// Events are 1 indexed.... why.... (thus index is 1 less than id)
+			dataLoader.selectedEvent = dataLoader.events[this.id - 1];
+		}
+
+		console.log("loading uwu")
+		await dataLoader.loadData()
+		console.log("Loaded!")
+
+		this.setState({
+			users: dataLoader.users,
+		});
+	}
+
+	public setEventInfo(newEventId?: number, newRegion?: Region): void {
+		console.log(newEventId + " " + newRegion);
+		this.id = newEventId ?? this.id;
+		this.region = newRegion ?? this.region;
+		this.loadData();
+	}
+
+	render() {
+		return (
+			<>
+				<Helmet>
+					<title>Tracker</title>
+				</Helmet>
+				<PageTitleWrapper>
+					<PageHeader
+						setEventInfo={this.setEventInfo.bind(this)}
+					/>
+				</PageTitleWrapper>
+				<Container maxWidth="lg">
+					<Grid
+						container
+						direction="row"
+						justifyContent="center"
+						alignItems="stretch"
+						spacing={3}
+					>
+						<Grid item xs={12}>
+							{this.state.users ?
+								<div>
+									{
+										Object.keys(this.state.users).length > 0 ?
+											<RecentOrders
+												// Sort in descending order of EP
+												users={Object.values(this.state.users).sort((a, b) => (b.stats.eventPoints - a.stats.eventPoints))}
+											/>
+											:
+											<div>No data available. Bestdori doesn't have detailed data for many early events.</div>
+									}
+								</div>
+								:
+								<div>Loading...</div>
+							}
+						</Grid>
+					</Grid>
+				</Container>
+				<Footer />
+			</>
+		);
+	}
+}
+
+export default DashboardTracker;

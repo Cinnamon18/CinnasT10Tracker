@@ -5,6 +5,8 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 
 import ThemeProvider from './theme/ThemeProvider';
 import { CssBaseline } from '@mui/material';
+import DataLoader from './utils/dataloader';
+import Region from './models/region';
 
 const App = () => {
 
