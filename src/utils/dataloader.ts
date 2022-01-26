@@ -23,6 +23,11 @@ class DataLoader {
 	}
 
 	public async loadEvents() {
+		// If we've already loaded events, skip this call!
+		if (this.events && this.events.length != 0) {
+			return;
+		}
+
 		let currentEvent = null;
 
 		const response = await fetch(`${DataLoader.corsProxyUrl}https://bestdori.com/api/events/all.6.json`)

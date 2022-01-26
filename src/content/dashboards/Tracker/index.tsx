@@ -19,6 +19,7 @@ interface IDashboardTrackerState {
 class DashboardTracker extends React.Component<IDashboardTrackerProps, IDashboardTrackerState> {
 	private id: number | undefined;
 	private region: Region;
+	private timerId: any;
 
 	constructor(props) {
 		super(props);
@@ -30,6 +31,21 @@ class DashboardTracker extends React.Component<IDashboardTrackerProps, IDashboar
 		this.region = Region.EN;
 
 		this.loadData();
+	}
+
+
+	componentDidMount() {
+		// Reload data every 60 seconds
+		this.timerId = setInterval(
+			() => {
+				this.loadData()
+			},
+			60 * 1000
+		);
+	}
+
+	componentWillUnmount() {
+		clearInterval(this.timerId);
 	}
 
 	private async loadData() {

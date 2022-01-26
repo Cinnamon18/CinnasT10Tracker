@@ -23,7 +23,7 @@ class PageHeader extends React.Component<IDashboardTrackerProps, IDashboardTrack
 
 		return (
 			<Grid container justifyContent="flex-start" alignItems="center" spacing={3}>
-				<Grid item xs={3}>
+				<Grid item xs={4} md={3}>
 					<Typography variant="h3" component="h3" gutterBottom>
 						{DataLoader.getInstance().selectedEvent.name}
 					</Typography>
@@ -31,7 +31,7 @@ class PageHeader extends React.Component<IDashboardTrackerProps, IDashboardTrack
 						{"Event number " + DataLoader.getInstance().selectedEvent.id}
 					</Typography>
 				</Grid>
-				<Grid item xs={3}>
+				<Grid item xs={4} md={3}>
 					<FormControl fullWidth>
 						<InputLabel id="demo-simple-select-label">Event</InputLabel>
 						<Select
@@ -49,7 +49,7 @@ class PageHeader extends React.Component<IDashboardTrackerProps, IDashboardTrack
 						</Select>
 					</FormControl>
 				</Grid>
-				<Grid item xs={3}>
+				<Grid item xs={4} md={3}>
 					<FormControl fullWidth>
 						<InputLabel id="demo-simple-select-label">Region</InputLabel>
 						<Select

@@ -92,7 +92,7 @@ function Hero() {
 						color="text.secondary"
 						fontWeight="normal"
 					>
-						A more visually polished and feature-rich tracker, for the modern era of Bang Dream tiering!
+						A visually polished and simple t10 tracker, for the modern era of Bang Dream tiering!
 					</TypographyH2>
 					<Button
 						component={RouterLink}
