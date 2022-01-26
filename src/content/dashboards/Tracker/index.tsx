@@ -103,7 +103,7 @@ class DashboardTracker extends React.Component<IDashboardTrackerProps, IDashboar
 												users={Object.values(this.state.users).sort((a, b) => (b.stats.eventPoints - a.stats.eventPoints))}
 											/>
 											:
-											<div>No data available. Bestdori doesn't have detailed data for many early events.</div>
+											<div>No data available. Bestdori doesn't have detailed data for many early events (And, of course, future events).</div>
 									}
 								</div>
 								:

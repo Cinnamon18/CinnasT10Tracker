@@ -143,7 +143,9 @@ const UsersTable: FC<UsersTableProps> = ({ users }) => {
 							<TableCell>ID</TableCell>
 							<TableCell>Nickname</TableCell>
 							<TableCell align="left">Total EP</TableCell>
-							<TableCell align="left">Total Games</TableCell>
+							<Tooltip arrow title={`This may be slightly undercounted. The (rather infrequent) case when a user completes 2 games in the same 2 minute window is considered a single game.`} placement="top">
+								<TableCell align="left">Total Games</TableCell>
+							</Tooltip>
 							<Tooltip arrow title={`Event points scored for games completed between 60 minutes ago (${timeStampAnHourAgo}) and now (${timeStampNow})`} placement="top">
 								<TableCell align="left">EP last hour</TableCell>
 							</Tooltip>

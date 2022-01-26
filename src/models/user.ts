@@ -100,6 +100,12 @@ class User {
 		}
 		this.stats.activeAverageEpPerHour = this.stats.eventPoints / activeMs * milisecondsPerMinute * 60
 		this.stats.activeAverageGamesPerHour = totalGames / activeMs * milisecondsPerMinute * 60
+		if (!isFinite(this.stats.activeAverageEpPerHour)) {
+			this.stats.activeAverageEpPerHour = 0;
+		}
+		if (!isFinite(this.stats.activeAverageGamesPerHour)) {
+			this.stats.activeAverageGamesPerHour = 0;
+		}
 
 
 	}
