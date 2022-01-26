@@ -78,7 +78,7 @@ class DashboardTracker extends React.Component<IDashboardTrackerProps, IDashboar
 		return (
 			<>
 				<Helmet>
-					<title>Tracker</title>
+					<title>T10 Tracker</title>
 				</Helmet>
 				<PageTitleWrapper>
 					<PageHeader
