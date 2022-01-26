@@ -1,11 +1,11 @@
 {
-  "name": "tokyo-free-white-react-admin-dashboard",
-  "version": "1.1.0",
-  "title": "Tokyo Free White React Admin Dashboard",
-  "description": "This free and open source admin dashboard template is built for React and it’s bootstrapped from Facebook’s create-react-app. All NPM dependencies are up to date and it contains multiple fully customized components based on the popular frontend components framework, Material-UI.",
+  "name": "cinnas-t10-tracker",
+  "version": "0.1",
+  "title": "Cinna's T10 Tracker",
+  "description": "A visually polished and simple t10 tracker, for the modern era of Bang Dream tiering!",
   "author": {
-    "name": "BloomUI.com",
-    "url": "https://bloomui.com"
+    "name": "Cinna",
+    "url": "https://github.com/Cinnamon18/CinnasT10Tracker"
   },
   "engines": {
     "node": "14.x"
