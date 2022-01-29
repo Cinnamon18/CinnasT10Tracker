@@ -36,7 +36,7 @@ class User {
 		// Grab current ep!
 		this.stats.eventPoints = mostRecentPoints.points
 
-		this.stats.lastEventPoints = this.pointsAtTimes[this.pointsAtTimes.length - 1].points;
+		this.stats.lastEventPoints = this.pointsAtTimes[this.pointsAtTimes.length - 1].points - this.pointsAtTimes[this.pointsAtTimes.length - 2].points;
 
 		// Total games
 		let totalGames = 0;
