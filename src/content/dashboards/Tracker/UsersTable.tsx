@@ -143,6 +143,7 @@ const UsersTable: FC<UsersTableProps> = ({ users }) => {
 							<TableCell>ID</TableCell>
 							<TableCell>Nickname</TableCell>
 							<TableCell align="left">Total EP</TableCell>
+							<TableCell align="left">Last EP</TableCell>
 							<Tooltip arrow title={`This may be slightly undercounted. The (rather infrequent) case when a user completes 2 games in the same 2 minute window is considered a single game.`} placement="top">
 								<TableCell align="left">Total Games</TableCell>
 							</Tooltip>
@@ -204,6 +205,17 @@ const UsersTable: FC<UsersTableProps> = ({ users }) => {
 											noWrap
 										>
 											{"" + user.stats.eventPoints.toLocaleString("en-US")}
+										</Typography>
+									</TableCell>
+									<TableCell align="left">
+										<Typography
+											variant="body1"
+											fontWeight="bold"
+											color="text.primary"
+											gutterBottom
+											noWrap
+										>
+											{"" + user.stats.lastEventPoints.toLocaleString("en-US")}
 										</Typography>
 									</TableCell>
 									<TableCell align="left">
