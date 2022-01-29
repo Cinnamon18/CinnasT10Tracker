@@ -36,10 +36,6 @@ class User {
 		// Grab current ep!
 		this.stats.eventPoints = mostRecentPoints.points
 
-		if (this.pointsAtTimes.length >= 2) {
-			this.stats.lastEventPoints = this.pointsAtTimes[this.pointsAtTimes.length - 1].points - this.pointsAtTimes[this.pointsAtTimes.length - 2].points;
-		}
-
 		// Total games
 		let totalGames = 0;
 		for (let i = 1; i < this.pointsAtTimes.length; i++) {
@@ -88,6 +84,7 @@ class User {
 		for (let i = 5; i < this.pointsAtTimes.length; i++) {
 			const thisGame = this.pointsAtTimes[i];
 			if (thisGame.points > lastActiveGame.points) {
+				this.stats.lastEventPoints = thisGame.points - lastActiveGame.points;
 				lastActiveGame = thisGame;
 			}
 			
@@ -102,6 +99,7 @@ class User {
 				activeMs += thisGame.time - this.pointsAtTimes[i - 1].time;
 			}
 		}
+
 		this.stats.activeAverageEpPerHour = this.stats.eventPoints / activeMs * milisecondsPerMinute * 60
 		this.stats.activeAverageGamesPerHour = totalGames / activeMs * milisecondsPerMinute * 60
 		if (!isFinite(this.stats.activeAverageEpPerHour)) {
