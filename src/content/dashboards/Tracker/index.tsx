@@ -35,12 +35,12 @@ class DashboardTracker extends React.Component<IDashboardTrackerProps, IDashboar
 
 
 	componentDidMount() {
-		// Reload data every 60 seconds
+		// Reload data every 120 seconds
 		this.timerId = setInterval(
 			() => {
 				this.loadData()
 			},
-			60 * 1000
+			120 * 1000
 		);
 	}
 
