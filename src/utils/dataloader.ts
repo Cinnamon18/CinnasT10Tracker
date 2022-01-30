@@ -95,9 +95,15 @@ class DataLoader {
 		for(let uid in this.users) {
 			let user = this.users[uid];
 			user.computeStatistics();
-
 		}
-		// console.log(this.users);
+
+		
+		// Compute post process stats
+		let uids = Object.values(this.users).sort((a, b) => (b.stats.eventPoints - a.stats.eventPoints)).map(user => user.id);
+		for (let i = 0; i < uids.length - 2; i++) {
+			this.users[uids[i]].stats.epLeadOnNextPlayer = this.users[uids[i]].stats.eventPoints - this.users[uids[i + 1]].stats.eventPoints
+			this.users[uids[i]].stats.hoursLeadOnNextPlayer = this.users[uids[i]].stats.epLeadOnNextPlayer / this.users[uids[i + 1]].stats.activeAverageEpPerHour
+		}
 	}
 }
 

@@ -142,7 +142,9 @@ const UsersTable: FC<UsersTableProps> = ({ users }) => {
 						<TableRow>
 							<TableCell>ID</TableCell>
 							<TableCell>Nickname</TableCell>
+							<Tooltip arrow title={`Grey number is user's distance from next ranked competitor, time is based on the competitors active average rate.`} placement="top">
 							<TableCell align="left">Total EP</TableCell>
+							</Tooltip>
 							<TableCell align="left">Last EP</TableCell>
 							<Tooltip arrow title={`This may be slightly undercounted. The (rather infrequent) case when a user completes 2 games in the same 2 minute window is considered a single game.`} placement="top">
 								<TableCell align="left">Total Games</TableCell>
@@ -205,6 +207,9 @@ const UsersTable: FC<UsersTableProps> = ({ users }) => {
 											noWrap
 										>
 											{"" + user.stats.eventPoints.toLocaleString("en-US")}
+										</Typography>
+										<Typography variant="body2" color="text.secondary" noWrap>
+											{`+${user.stats.epLeadOnNextPlayer.toLocaleString("en-US")} ≈ ${user.stats.hoursLeadOnNextPlayer.toFixed(1)} hours`}
 										</Typography>
 									</TableCell>
 									<TableCell align="left">

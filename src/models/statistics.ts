@@ -2,6 +2,8 @@ class Statistics {
 	constructor(
 		public computedAtTime: number = 0,
 		public eventPoints: number = 0,
+		public epLeadOnNextPlayer: number = 0,
+		public hoursLeadOnNextPlayer: number = 0,
 		public lastEventPoints: number = 0,
 		public totalGames: number = 0,
 		public isPlaying: boolean = false,
