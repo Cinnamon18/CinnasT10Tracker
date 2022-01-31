@@ -14,6 +14,7 @@ import GbpEvent from "src/models/gbp_event";
 interface IDashboardTrackerProps { }
 interface IDashboardTrackerState {
 	users: { [uid: number]: User } | null,
+	isLoading: boolean,
 }
 
 class DashboardTracker extends React.Component<IDashboardTrackerProps, IDashboardTrackerState> {
@@ -24,7 +25,8 @@ class DashboardTracker extends React.Component<IDashboardTrackerProps, IDashboar
 	constructor(props) {
 		super(props);
 		this.state = {
-			users: null
+			users: null,
+			isLoading: false,
 		};
 
 		this.id = undefined;
@@ -49,6 +51,9 @@ class DashboardTracker extends React.Component<IDashboardTrackerProps, IDashboar
 	}
 
 	private async loadData() {
+		this.setState({
+			isLoading: true,
+		});
 		const dataLoader = DataLoader.getInstance();
 		await dataLoader.loadEvents();
 
@@ -58,12 +63,11 @@ class DashboardTracker extends React.Component<IDashboardTrackerProps, IDashboar
 			dataLoader.selectedEvent = dataLoader.events[this.id - 1];
 		}
 
-		console.log("loading uwu")
 		await dataLoader.loadData()
-		console.log("Loaded!")
-
+		
 		this.setState({
 			users: dataLoader.users,
+			isLoading: false,
 		});
 	}
 
@@ -83,6 +87,7 @@ class DashboardTracker extends React.Component<IDashboardTrackerProps, IDashboar
 				<PageTitleWrapper>
 					<PageHeader
 						setEventInfo={this.setEventInfo.bind(this)}
+						isLoading={this.state.isLoading}
 					/>
 				</PageTitleWrapper>
 				<Container maxWidth="lg">

@@ -1,14 +1,16 @@
-import { Typography, Button, Grid, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import { Typography, Button, Grid, FormControl, InputLabel, MenuItem, Select, CircularProgress } from '@mui/material';
 
 import AddTwoToneIcon from '@mui/icons-material/AddTwoTone';
 import React from 'react';
 import DataLoader from 'src/utils/dataloader';
 import Region from 'src/models/region';
 import { WatchLater, WatchLaterTwoTone } from '@mui/icons-material';
+import { LoadingButton } from '@mui/lab';
 
 
 interface IDashboardTrackerProps {
 	setEventInfo: (eventId?: number, region?: Region) => void;
+	isLoading: boolean;
 }
 
 interface IDashboardTrackerState {
@@ -49,7 +51,7 @@ class PageHeader extends React.Component<IDashboardTrackerProps, IDashboardTrack
 						</Select>
 					</FormControl>
 				</Grid>
-				<Grid item xs={4} md={3}>
+				<Grid item xs={3} md={2}>
 					<FormControl fullWidth>
 						<InputLabel id="demo-simple-select-label">Region</InputLabel>
 						<Select
@@ -66,6 +68,14 @@ class PageHeader extends React.Component<IDashboardTrackerProps, IDashboardTrack
 							))}
 						</Select>
 					</FormControl>
+				</Grid>
+				<Grid item xs={1} md={1}>
+					<LoadingButton
+						loading={this.props.isLoading}
+						loadingPosition='start'
+						loadingIndicator={<CircularProgress color="inherit" size={24} />}
+					>
+					</LoadingButton>
 				</Grid>
 				{/* <Grid item xs={3}>
 					<Button
