@@ -143,17 +143,20 @@ const UsersTable: FC<UsersTableProps> = ({ users }) => {
 							<TableCell>ID</TableCell>
 							<TableCell>Nickname</TableCell>
 							<Tooltip arrow title={`Grey number is user's distance from next ranked competitor, time is based on the competitors active average rate.`} placement="top">
-							<TableCell align="left">Total EP</TableCell>
+								<TableCell align="left">Total EP</TableCell>
 							</Tooltip>
 							<TableCell align="left">Last EP</TableCell>
-							<Tooltip arrow title={`This may be slightly undercounted. The (rather infrequent) case when a user completes 2 games in the same 2 minute window is considered a single game.`} placement="top">
+							{/* <Tooltip arrow title={`This may be slightly undercounted. The (rather infrequent) case when a user completes 2 games in the same 2 minute window is considered a single game.`} placement="top">
 								<TableCell align="left">Total Games</TableCell>
-							</Tooltip>
+							</Tooltip> */}
 							<Tooltip arrow title={`Event points scored for games completed between 60 minutes ago (${timeStampAnHourAgo}) and now (${timeStampNow})`} placement="top">
 								<TableCell align="left">EP last hour</TableCell>
 							</Tooltip>
 							<Tooltip arrow title={`Games completed between 60 minutes ago (${timeStampAnHourAgo}) and now (${timeStampNow})`} placement="top">
 								<TableCell align="left">Games last hour</TableCell>
+							</Tooltip>
+							<Tooltip arrow title="Uptime (green): how long has it been since they last took a break of 30 minutes or more? Downtime (red): How long has it been since they played." placement="top">
+								<TableCell align="left">Uptime</TableCell>
 							</Tooltip>
 							<Tooltip arrow title="Has their score changed in the last 10 minutes?" placement="top">
 								<TableCell align="left">Active</TableCell>
@@ -223,7 +226,7 @@ const UsersTable: FC<UsersTableProps> = ({ users }) => {
 											{"" + user.stats.lastEventPoints.toLocaleString("en-US")}
 										</Typography>
 									</TableCell>
-									<TableCell align="left">
+									{/* <TableCell align="left">
 										<Typography
 											variant="body1"
 											fontWeight="bold"
@@ -233,7 +236,7 @@ const UsersTable: FC<UsersTableProps> = ({ users }) => {
 										>
 											{"" + user.stats.totalGames.toLocaleString("en-US")}
 										</Typography>
-									</TableCell>
+									</TableCell> */}
 									<TableCell align="left">
 										<Typography
 											variant="body1"
@@ -261,6 +264,29 @@ const UsersTable: FC<UsersTableProps> = ({ users }) => {
 										{/* <Typography variant="body2" color="text.secondary" noWrap>
                       {user.stats.gamesLastCompleteHour}
                     </Typography> */}
+									</TableCell>
+									<TableCell align="left">
+										{user.stats.uptimeDowntime > 0 ?
+											<Typography
+												variant="body1"
+												fontWeight="bold"
+												color="success.dark"
+												gutterBottom
+												noWrap
+											>
+												{user.stats.uptimeDowntime.toFixed(1)}
+											</Typography>
+											:
+											<Typography
+												variant="body1"
+												fontWeight="bold"
+												color="error.dark"
+												gutterBottom
+												noWrap
+											>
+												{user.stats.uptimeDowntime.toFixed(1)}
+											</Typography>
+										}
 									</TableCell>
 									<TableCell align="left">
 										<Typography

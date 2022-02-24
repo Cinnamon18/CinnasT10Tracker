@@ -7,6 +7,7 @@ class Statistics {
 		public lastEventPoints: number = 0,
 		public totalGames: number = 0,
 		public isPlaying: boolean = false,
+		public uptimeDowntime: number = 0, // Negative is downtime, positive is uptime.
 		public epLastCompleteHour: number = 0,
 		public epLastHourWindow: number = 0,
 		public gamesLastCompleteHour: number = 0,

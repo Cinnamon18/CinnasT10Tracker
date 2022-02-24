@@ -1,3 +1,4 @@
+import { millisecondsToHours } from "date-fns";
 import PointsAtTime from "./points_at_time";
 import Statistics from "./statistics";
 
@@ -97,6 +98,26 @@ class User {
 			// Increase active ms if we r active!
 			if (isActiveNow && hasBeenPlayingFor10Minutes) {
 				activeMs += thisGame.time - this.pointsAtTimes[i - 1].time;
+			}
+		}
+
+		if (!this.stats.isPlaying) {
+			// They're innactive! Display their downtime, which is time since last active game.
+			this.stats.uptimeDowntime = (this.stats.computedAtTime - lastActiveGame.time) / (milisecondsPerMinute * 60);
+			this.stats.uptimeDowntime *= -1; // -1 to indicate downtime
+		} else {
+			// They're active. We gotta go dredge up their last period of innactivity.
+			// Uhhh this is a bit imprecise bc i don't wna assume all updates r 2 mins appart but also i wna get it out quick for this event
+			// #TECH DEBT
+			// Look backwards until we hit a period of 30 mins of innactivity.
+
+			// Handle case where they've been playing the whole event
+			this.stats.uptimeDowntime = (this.stats.computedAtTime - this.pointsAtTimes[0].time) / (milisecondsPerMinute * 60)
+			for(let i = this.pointsAtTimes.length - 1; i > 15; i--) {
+				if(this.pointsAtTimes[i].points == this.pointsAtTimes[i - 15].points) {
+					this.stats.uptimeDowntime = (this.stats.computedAtTime - this.pointsAtTimes[i].time) / (milisecondsPerMinute * 60);
+					break;
+				}
 			}
 		}
 

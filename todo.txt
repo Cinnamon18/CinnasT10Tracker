@@ -1,0 +1,5 @@
+-hours of uptime / downtime
+-make lead / hours ui clearer
+-dark mode
+-graphs
+-relevant at a glance stats vs longer term ones
